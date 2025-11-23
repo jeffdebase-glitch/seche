@@ -227,11 +227,11 @@
     <button id="copyBtn" onclick="copyText()">📋 Copier pour ChatGPT</button>
 
     <div class="note">
-      ℹ️ Le cardio (tapis, trajets) n’affiche plus de kcal ici. Je calculerai tout dans la conversation.
+      ℹ️ Le cardio (tapis, trajets) n’affiche pas de kcal ici. On fera les calculs dans la conversation.
     </div>
   </main>
 
-  <!-- Popup grammes (poulet / salade) -->
+  <!-- Popup grammes (poulet / salade / pâtes) -->
   <div class="popup" id="gram-popup">
     <div class="popup-box">
       <div class="popup-title" id="gram-title">Quantité</div>
@@ -313,6 +313,15 @@
         kcalPerUnit: 0.15,
         protPerUnit: 0.01
       },
+      pasta: {
+        buttonLabel: "🍝 Pâtes",
+        name: "Pâtes cuites",
+        type: "food",
+        unit: "g",
+        defaultQty: 100,
+        kcalPerUnit: 1.5,   // 150 kcal / 100 g cuits
+        protPerUnit: 0.035  // 3.5 g prot / 100 g cuits
+      },
       psyllium: {
         buttonLabel: "🧂 Psyllium",
         name: "Psyllium",
@@ -360,11 +369,11 @@
       }
     };
 
-    // Liste de ce qui est sélectionné
-    // { key, name, unit, qty, kcal, prot, ...optionnel (duration, slope, speed, bpm) }
+    // Liste des éléments sélectionnés
+    // { key, name, unit, qty, kcal, prot, duration?, slope?, speed?, bpm? }
     let selected = [];
 
-    // Variables pour popup grammes
+    // pour popup grammes
     let gramPopupKey = null;
 
     // 🔘 Construire les boutons
@@ -380,7 +389,7 @@
             (defK ? ` ≈ ${defK} kcal` : "") +
             (defP ? ` · ${defP} g prot` : "");
         } else {
-          sub = "Cardio / marche – kcal à calculer";
+          sub = "Cardio / marche – kcal à calculer ici";
         }
         html += `
           <button class="btn" onclick="addItem('${key}')">
@@ -397,8 +406,8 @@
       const def = ITEMS[key];
       if (!def) return;
 
-      // Cas poulet / salade → popup grammes
-      if (key === "chicken" || key === "salad") {
+      // Cas poulet / salade / pâtes → popup grammes
+      if (key === "chicken" || key === "salad" || key === "pasta") {
         openGramPopup(key);
         return;
       }
@@ -411,7 +420,8 @@
 
       // Cas standard : whey, psyllium, huile, trajets
       let qty = def.defaultQty;
-      // Pas de question pour cardio / trajets / whey (tu as déjà 1 ou 2 cups)
+
+      // Pas de question pour whey1/whey2/psyllium/huile/cardio/trajects
       if (def.type === "food" && !["whey1","whey2","psyllium","oil"].includes(key)) {
         const ans = prompt(
           `Quantité pour ${def.name} en ${def.unit} (défaut : ${def.defaultQty})`,
@@ -437,18 +447,29 @@
       render();
     }
 
-    // 🧮 Popup grammes pour poulet / salade
+    // 🧮 Popup grammes pour poulet / salade / pâtes
     function openGramPopup(key) {
       gramPopupKey = key;
       const def = ITEMS[key];
       const title = document.getElementById("gram-title");
-      title.textContent = key === "chicken"
-        ? "Quantité de poulet (g)"
-        : "Quantité de salade (g)";
+
+      if (key === "chicken") {
+        title.textContent = "Quantité de poulet (g)";
+      } else if (key === "salad") {
+        title.textContent = "Quantité de salade (g)";
+      } else {
+        title.textContent = "Quantité de pâtes (g)";
+      }
 
       const btns = document.getElementById("gram-buttons");
       btns.innerHTML = "";
-      const options = [200, 250, 300, 350, 400]; // comme demandé
+
+      // Options par défaut : poulet/salade
+      let options = [200, 250, 300, 350, 400];
+      // Pour pâtes : 50, 100, 120, 150, 200
+      if (key === "pasta") {
+        options = [50, 100, 120, 150, 200];
+      }
 
       options.forEach(val => {
         const b = document.createElement("button");
@@ -489,7 +510,6 @@
 
     // 🏃 Popup cardio custom
     function openCardioPopup() {
-      // reset inputs
       document.getElementById("cardio-duration").value = "";
       document.getElementById("cardio-slope").value = "";
       document.getElementById("cardio-speed").value = "";
@@ -513,7 +533,7 @@
         name: def.name,
         unit: "",
         qty: 1,
-        kcal: 0, // aucun impact sur le total (calcul ici plus tard)
+        kcal: 0,
         prot: 0,
         duration,
         slope,
@@ -530,9 +550,9 @@
       const item = selected[index];
       if (!item) return;
 
-      // Cardio custom : on ne modifie pas via ce bouton (trop chiant sur mobile)
+      // Cardio custom : pas de modification (on supprime et on recrée)
       if (item.key === "cardio") {
-        alert("Pour l’instant, le cardio est fixé après validation du popup. Si tu veux le changer, supprime et recrée.");
+        alert("Pour modifier le cardio, supprime et recrée avec le bouton 🔥 Cardio.");
         return;
       }
 
@@ -581,7 +601,6 @@
         const main = document.createElement("div");
         main.className = "row-main";
 
-        // Affichage spécifique cardio
         if (def && def.type === "cardio") {
           if (it.key === "cardio") {
             let details = [];
@@ -603,7 +622,7 @@
             lines.push(`${it.name} ${it.qty} ${it.unit} (cardio, kcal à calculer)`);
           }
         } else {
-          // Nourriture classique
+          // Nourriture
           main.innerHTML =
             `<strong>${it.name}</strong>` +
             `${it.qty} ${it.unit} – ${Math.round(it.kcal)} kcal, ${Math.round(it.prot)} g prot`;

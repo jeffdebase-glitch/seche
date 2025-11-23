@@ -1,162 +1,402 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sèche – Jeff</title>
-
-<style>
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", Arial, sans-serif;
-    background: #f5f5f7;
-    color: #111;
-  }
-  header {
-    text-align: center;
-    padding: 10px 0;
-    font-size: 18px;
-    font-weight: 600;
-    background: #fff;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    border-bottom: 1px solid #ddd;
-  }
-  main { padding: 10px; max-width: 600px; margin: auto; }
-  .btn {
-    width: 48%;
-    padding: 12px;
-    margin: 1%;
-    border-radius: 10px;
-    border: 1px solid #d0d0d5;
-    background: #fff;
-    font-size: 15px;
-    font-weight: 500;
-  }
-  .btn:active { background: #e5f0ff; border-color: #007aff; }
-  .list-box {
-    background: #fff;
-    margin-top: 12px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    padding: 8px;
-    max-height: 250px;
-    overflow-y: auto;
-  }
-  .row {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #eee;
-    padding: 4px 0;
-    font-size: 14px;
-  }
-  .row:last-child { border-bottom: none; }
-  .rmv {
-    font-size: 12px;
-    color: #ff3b30;
-    cursor: pointer;
-  }
-  .total {
-    margin-top: 10px;
-    background: #fff;
-    padding: 8px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    font-size: 14px;
-  }
-  textarea {
-    margin-top: 10px;
-    width: 100%;
-    height: 110px;
-    border-radius: 10px;
-    border: 1px solid #bbb;
-    padding: 8px;
-    font-size: 13px;
-  }
-  #copyBtn {
-    margin-top: 10px;
-    padding: 12px;
-    width: 100%;
-    background: #007aff;
-    color: #fff;
-    border: none;
-    border-radius: 12px;
-    font-size: 15px;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sèche – Jeff</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", Arial, sans-serif;
+      background: #f5f5f7;
+      color: #111;
+    }
+    header {
+      text-align: center;
+      padding: 10px 0;
+      font-size: 18px;
+      font-weight: 600;
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #ddd;
+    }
+    main {
+      padding: 10px;
+      max-width: 600px;
+      margin: auto;
+    }
+    #buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .btn {
+      width: 48%;
+      padding: 10px;
+      margin: 4px 0;
+      border-radius: 10px;
+      border: 1px solid #d0d0d5;
+      background: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: left;
+    }
+    .btn span.small {
+      display: block;
+      font-size: 11px;
+      color: #777;
+    }
+    .btn:active {
+      background: #e5f0ff;
+      border-color: #007aff;
+    }
+    .list-box {
+      background: #fff;
+      margin-top: 12px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      padding: 8px;
+      max-height: 260px;
+      overflow-y: auto;
+    }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #eee;
+      padding: 4px 0;
+      font-size: 13px;
+    }
+    .row:last-child {
+      border-bottom: none;
+    }
+    .row-main {
+      flex: 1;
+      padding-right: 6px;
+    }
+    .row-main strong {
+      display: block;
+    }
+    .row-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      align-items: flex-end;
+      font-size: 11px;
+    }
+    .link {
+      color: #007aff;
+      cursor: pointer;
+    }
+    .danger {
+      color: #ff3b30;
+    }
+    .total {
+      margin-top: 10px;
+      background: #fff;
+      padding: 8px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      font-size: 14px;
+    }
+    textarea {
+      margin-top: 10px;
+      width: 100%;
+      height: 110px;
+      border-radius: 10px;
+      border: 1px solid #bbb;
+      padding: 8px;
+      font-size: 13px;
+    }
+    #copyBtn {
+      margin-top: 10px;
+      padding: 12px;
+      width: 100%;
+      background: #007aff;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .note {
+      font-size: 11px;
+      color: #777;
+      margin-top: 6px;
+    }
+  </style>
 </head>
-
 <body>
-<header>Sèche – Jeff</header>
+  <header>Sèche – Jeff</header>
+  <main>
+    <div id="buttons"></div>
 
-<main>
-  <div id="buttons"></div>
-  <div class="list-box" id="selected"></div>
-  <div class="total" id="totals"></div>
-  <textarea id="output" readonly onclick="this.select()"></textarea>
-  <button id="copyBtn" onclick="copyText()">📋 Copier pour ChatGPT</button>
-</main>
+    <div class="list-box" id="selected">
+      <div style="font-size:12px;color:#777;">Aucun élément pour l’instant.</div>
+    </div>
 
-<script>
-/* ⚙️ Base aliments (poids fixe ou portions iPhone) */
-const items = {
-  "🥛 Whey (1 cup)": { kcal: 110, prot: 20 },
-  "🍗 Poulet 200g": { kcal: 330, prot: 62 },
-  "🥗 Salade 200g": { kcal: 30, prot: 2 },
-  "🧂 Psyllium": { kcal: 30, prot: 0 },
-  "🫒 1 c.s huile": { kcal: 90, prot: 0 },
-  "🚶  Trajet Salle (Aller)": { kcal: -80, prot: 0 },
-  "🚶  Trajet Salle (Retour)": { kcal: -80, prot: 0 },
-  "🔥 Cardio 1h": { kcal: -520, prot: 0 }
-};
+    <div class="total" id="totals">
+      Total net : 0 kcal — 0 g prot
+    </div>
 
-/* 🖱️ Génération des boutons */
-function makeButtons() {
-  let html = "";
-  Object.keys(items).forEach(k => {
-    html += `<button class="btn" onclick="addItem('${k}')">${k}</button>`;
-  });
-  document.getElementById("buttons").innerHTML = html;
-}
+    <textarea id="output" readonly onclick="this.select()"
+      placeholder="Texte prêt à coller dans ChatGPT…"></textarea>
 
-/* ➕ Ajouter aliment */
-let list = [];
-function addItem(name) {
-  list.push(name);
-  render();
-}
+    <button id="copyBtn" onclick="copyText()">📋 Copier pour ChatGPT</button>
 
-/* ❌ Supprimer aliment */
-function removeItem(i) {
-  list.splice(i, 1);
-  render();
-}
+    <div class="note">
+      ℹ️ Kcal = approximations rapides pour te faciliter la saisie. Le calcul précis reste fait dans ChatGPT.
+    </div>
+  </main>
 
-/* 💡 Mise à jour display + totaux + texte export */
-function render() {
-  let html = "", kcal = 0, prot = 0;
-  list.forEach((e,i) => {
-    kcal += items[e].kcal;
-    prot += items[e].prot;
-    html += `<div class="row"><span>${e}</span><span class="rmv" onclick="removeItem(${i})">✖</span></div>`;
-  });
-  document.getElementById("selected").innerHTML = html;
-  document.getElementById("totals").innerHTML = 
-    `🔢 Total: <b>${kcal} kcal</b> — 🥩 <b>${prot} g prot</b>`;
-  document.getElementById("output").value =
-    `📌 Entrées du jour :\n${list.join("\n")}\n\n🔥 Total = ${kcal} kcal\n💪 Protéines = ${prot} g`;
-}
+  <script>
+    // ⚙️ Config des items
+    // type = "food" (kcal+, prot+) ou "cardio" (kcal-)
+    const ITEMS = {
+      whey: {
+        buttonLabel: "🥛 Whey",
+        name: "Whey",
+        type: "food",
+        unit: "cup",
+        defaultQty: 1,
+        kcalPerUnit: 110,  // ~110 kcal / cup
+        protPerUnit: 20    // ~20 g prot / cup
+      },
+      chicken: {
+        buttonLabel: "🍗 Poulet",
+        name: "Poulet",
+        type: "food",
+        unit: "g",
+        defaultQty: 200,   // défaut 200 g
+        kcalPerUnit: 1.65, // ≈165 kcal / 100g
+        protPerUnit: 0.31  // ≈31 g prot / 100g
+      },
+      salad: {
+        buttonLabel: "🥗 Salade",
+        name: "Salade + légumes",
+        type: "food",
+        unit: "g",
+        defaultQty: 200,
+        kcalPerUnit: 0.15, // ~30 kcal / 200g
+        protPerUnit: 0.01
+      },
+      psyllium: {
+        buttonLabel: "🧂 Psyllium",
+        name: "Psyllium",
+        type: "food",
+        unit: "dose",
+        defaultQty: 1,
+        kcalPerUnit: 0,    // on compte 0 pour ne pas polluer les totaux
+        protPerUnit: 0
+      },
+      oil: {
+        buttonLabel: "🫒 Huile d’olive",
+        name: "Huile d’olive",
+        type: "food",
+        unit: "g",
+        defaultQty: 10,    // ~1 c.s
+        kcalPerUnit: 9,    // 9 kcal / g
+        protPerUnit: 0
+      },
+      walkGo: {
+        buttonLabel: "🚶 Aller salle",
+        name: "Trajet Salle (Aller)",
+        type: "cardio",
+        unit: "trajet",
+        defaultQty: 1,
+        kcalPerUnit: -65,  // on retire ~65 kcal
+        protPerUnit: 0
+      },
+      walkBack: {
+        buttonLabel: "🚶 Retour salle",
+        name: "Trajet Salle (Retour)",
+        type: "cardio",
+        unit: "trajet",
+        defaultQty: 1,
+        kcalPerUnit: -65,
+        protPerUnit: 0
+      },
+      cardio1h: {
+        buttonLabel: "🔥 Cardio 1h",
+        name: "Cardio marche inclinée 1h",
+        type: "cardio",
+        unit: "séance",
+        defaultQty: 1,
+        kcalPerUnit: -520, // estimé pour 1h ton style habituel
+        protPerUnit: 0
+      }
+    };
 
-/* 📋 Copier */
-function copyText() {
-  document.getElementById("output").select();
-  document.execCommand("copy");
-  alert("Copié !");
-}
+    // Liste des entrées sélectionnées
+    // { key, name, unit, qty, kcal, prot }
+    let selected = [];
 
-makeButtons(); render();
-</script>
+    // 🔘 Construction des boutons
+    function buildButtons() {
+      let html = "";
+      for (const key in ITEMS) {
+        const it = ITEMS[key];
+        const defK = Math.round(it.kcalPerUnit * it.defaultQty);
+        const defP = Math.round(it.protPerUnit * it.defaultQty);
+        let sub = "";
+        if (it.type === "food") {
+          sub = `${it.defaultQty} ${it.unit} ≈ ${defK} kcal`;
+          if (defP > 0) sub += ` · ${defP} g prot`;
+        } else {
+          sub = `${it.defaultQty} ${it.unit} ≈ ${defK} kcal`;
+        }
+        html += `
+          <button class="btn" onclick="addItem('${key}')">
+            ${it.buttonLabel}
+            <span class="small">${sub}</span>
+          </button>
+        `;
+      }
+      document.getElementById("buttons").innerHTML = html;
+    }
 
+    // ➕ Ajout d’un item (avec quantité modifiable)
+    function addItem(key) {
+      const def = ITEMS[key];
+      if (!def) return;
+
+      let qty = def.defaultQty;
+
+      // Pour la nourriture : on propose la quantité modifiable
+      if (def.type === "food") {
+        const question =
+          `Quantité pour ${def.name} en ${def.unit} (défaut : ${def.defaultQty})`;
+        const answer = prompt(question, String(def.defaultQty));
+        if (answer !== null && answer.trim() !== "") {
+          const q = parseFloat(answer.replace(",", "."));
+          if (!isNaN(q) && q > 0) qty = q;
+        }
+      }
+      // Pour cardio/trajets : on garde 1 par défaut (pas de question)
+
+      const kcal = def.kcalPerUnit * qty;
+      const prot = def.protPerUnit * qty;
+
+      selected.push({
+        key,
+        name: def.name,
+        unit: def.unit,
+        qty,
+        kcal,
+        prot
+      });
+      render();
+    }
+
+    // ✏️ Modifier quantité après coup
+    function editItem(index) {
+      const item = selected[index];
+      if (!item) return;
+      const def = ITEMS[item.key];
+      const msg =
+        `Nouvelle quantité pour ${item.name} en ${item.unit} (actuel : ${item.qty})`;
+      const answer = prompt(msg, String(item.qty));
+      if (answer === null || answer.trim() === "") return;
+      const q = parseFloat(answer.replace(",", "."));
+      if (!isNaN(q) && q > 0) {
+        item.qty = q;
+        const base = ITEMS[item.key];
+        item.kcal = base.kcalPerUnit * q;
+        item.prot = base.protPerUnit * q;
+        render();
+      }
+    }
+
+    // ❌ Suppression
+    function removeItem(index) {
+      selected.splice(index, 1);
+      render();
+    }
+
+    // 🔄 Mise à jour de l’affichage + total + texte à copier
+    function render() {
+      const box = document.getElementById("selected");
+      box.innerHTML = "";
+
+      if (selected.length === 0) {
+        box.innerHTML = '<div style="font-size:12px;color:#777;">Aucun élément pour l’instant.</div>';
+        document.getElementById("totals").textContent =
+          "Total net : 0 kcal — 0 g prot";
+        document.getElementById("output").value = "";
+        return;
+      }
+
+      let totalK = 0;
+      let totalP = 0;
+      let lines = [];
+
+      selected.forEach((it, i) => {
+        totalK += it.kcal;
+        totalP += it.prot;
+
+        const row = document.createElement("div");
+        row.className = "row";
+
+        const main = document.createElement("div");
+        main.className = "row-main";
+        main.innerHTML =
+          `<strong>${it.name}</strong>` +
+          `${it.qty} ${it.unit} – ` +
+          `${Math.round(it.kcal)} kcal, ` +
+          `${Math.round(it.prot)} g prot`;
+
+        const actions = document.createElement("div");
+        actions.className = "row-actions";
+        const edit = document.createElement("span");
+        edit.className = "link";
+        edit.textContent = "Modifier";
+        edit.onclick = () => editItem(i);
+        const del = document.createElement("span");
+        del.className = "link danger";
+        del.textContent = "Suppr";
+        del.onclick = () => removeItem(i);
+        actions.appendChild(edit);
+        actions.appendChild(del);
+
+        row.appendChild(main);
+        row.appendChild(actions);
+        box.appendChild(row);
+
+        const line =
+          `${it.name} ${it.qty} ${it.unit} ` +
+          `(${Math.round(it.kcal)} kcal, ${Math.round(it.prot)} g prot)`;
+        lines.push(line);
+      });
+
+      const totText =
+        `Total net : ${Math.round(totalK)} kcal — ${Math.round(totalP)} g prot`;
+      document.getElementById("totals").textContent = totText;
+
+      const out =
+        `Entrées du jour :\n` +
+        lines.join("\n") +
+        `\n\n🔥 Total net = ${Math.round(totalK)} kcal\n` +
+        `💪 Protéines ≈ ${Math.round(totalP)} g`;
+      document.getElementById("output").value = out;
+    }
+
+    // 📋 Copie dans le presse-papier
+    function copyText() {
+      const ta = document.getElementById("output");
+      ta.select();
+      ta.setSelectionRange(0, 99999);
+      try {
+        document.execCommand("copy");
+        alert("Texte copié. Tu peux le coller dans ChatGPT.");
+      } catch (e) {
+        alert("Sélection faite. Si iOS bloque, copie manuellement.");
+      }
+    }
+
+    // init
+    buildButtons();
+    render();
+  </script>
 </body>
 </html>

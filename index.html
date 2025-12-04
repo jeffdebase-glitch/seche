@@ -22,663 +22,146 @@
       z-index: 10;
       border-bottom: 1px solid #ddd;
     }
-    main {
-      padding: 10px;
-      max-width: 600px;
-      margin: auto;
-    }
-    #buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
+    main { padding: 10px; max-width: 600px; margin: auto; }
+    #buttons { display: flex; flex-wrap: wrap; justify-content: space-between; }
     .btn {
-      width: 48%;
-      padding: 10px;
-      margin: 4px 0;
-      border-radius: 10px;
-      border: 1px solid #d0d0d5;
-      background: #fff;
-      font-size: 14px;
-      font-weight: 500;
-      text-align: left;
+      width: 48%; padding: 10px; margin: 4px 0;
+      border-radius: 10px; border: 1px solid #d0d0d5;
+      background: #fff; font-size: 14px; text-align: left;
     }
-    .btn span.small {
-      display: block;
-      font-size: 11px;
-      color: #777;
-    }
-    .btn:active {
-      background: #e5f0ff;
-      border-color: #007aff;
-    }
+    .btn span { font-size: 11px; color: #777; display: block; }
     .list-box {
-      background: #fff;
-      margin-top: 12px;
-      border-radius: 10px;
-      border: 1px solid #ddd;
-      padding: 8px;
-      max-height: 260px;
-      overflow-y: auto;
+      background: #fff; margin-top: 12px; border-radius: 10px;
+      border: 1px solid #ddd; padding: 8px; max-height: 260px; overflow-y: auto;
     }
-    .row {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid #eee;
-      padding: 4px 0;
-      font-size: 13px;
-    }
-    .row:last-child {
-      border-bottom: none;
-    }
-    .row-main {
-      flex: 1;
-      padding-right: 6px;
-    }
-    .row-main strong {
-      display: block;
-    }
-    .row-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      align-items: flex-end;
-      font-size: 11px;
-    }
-    .link {
-      color: #007aff;
-      cursor: pointer;
-    }
-    .danger {
-      color: #ff3b30;
-    }
+    .row { display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding: 4px 0; font-size: 13px; }
+    .row:last-child { border-bottom: none }
+    .row-main { flex: 1; }
+    .row-actions { font-size: 11px; text-align: right; }
+    .link { color: #007aff; cursor: pointer; display: block; }
+    .danger { color: #ff3b30 }
     .total {
-      margin-top: 10px;
-      background: #fff;
-      padding: 8px;
-      border-radius: 10px;
-      border: 1px solid #ddd;
-      font-size: 14px;
+      margin-top: 10px; background: #fff; padding: 8px; border-radius: 10px;
+      border: 1px solid #ddd; font-size: 15px; font-weight: 600;
     }
     textarea {
-      margin-top: 10px;
-      width: 100%;
-      height: 110px;
-      border-radius: 10px;
-      border: 1px solid #bbb;
-      padding: 8px;
-      font-size: 13px;
+      margin-top: 8px; width: 100%; height: 110px;
+      border-radius: 10px; border: 1px solid #bbb; padding: 8px;
     }
     #copyBtn {
-      margin-top: 10px;
-      padding: 12px;
-      width: 100%;
-      background: #007aff;
-      color: #fff;
-      border: none;
-      border-radius: 12px;
-      font-size: 15px;
-      font-weight: 600;
+      margin-top: 8px; padding: 12px; width: 100%;
+      background: #007aff; color: #fff; border: none;
+      border-radius: 12px; font-size: 15px; font-weight: 600;
     }
-    .note {
-      font-size: 11px;
-      color: #777;
-      margin-top: 6px;
-    }
-    /* Popup générique */
-    .popup {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.35);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-    }
-    .popup.active {
-      display: flex;
-    }
-    .popup-box {
-      background: #fff;
-      border-radius: 14px;
-      padding: 12px;
-      max-width: 320px;
-      width: 85%;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-      font-size: 14px;
-    }
-    .popup-title {
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-    .popup-sub {
-      font-size: 12px;
-      color: #666;
-      margin-bottom: 8px;
-    }
-    .popup-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-    .popup-btn {
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid #d0d0d5;
-      background: #f5f5f7;
-      font-size: 13px;
-      cursor: pointer;
-    }
-    .popup-btn:active {
-      background: #e5f0ff;
-      border-color: #007aff;
-    }
-    .popup-input-group {
-      margin-bottom: 6px;
-    }
-    .popup-input-group label {
-      display: block;
-      font-size: 12px;
-      margin-bottom: 2px;
-    }
-    .popup-input-group input {
-      width: 100%;
-      padding: 6px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 13px;
-    }
-    .popup-actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 8px;
-      margin-top: 8px;
-    }
-    .popup-link {
-      font-size: 13px;
-      border: none;
-      background: none;
-      color: #007aff;
-      cursor: pointer;
-    }
-    .popup-link.danger {
-      color: #ff3b30;
-    }
+    .popup { position: fixed; inset: 0; background: rgba(0,0,0,.35); display:none; align-items:center; justify-content:center }
+    .popup.active { display:flex }
+    .popup-box { background:#fff; border-radius:14px; padding:14px; width:85%; max-width:320px }
+    .popup-btn { padding:6px 12px; margin:3px; border-radius:999px; border:1px solid #ccc; background:#f5f5f7 }
   </style>
 </head>
 <body>
-  <header>Sèche – Jeff</header>
 
-  <main>
-    <div id="buttons"></div>
+<header>Sèche – Jeff</header>
+<main>
 
-    <div class="list-box" id="selected">
-      <div style="font-size:12px;color:#777;">Aucun élément pour l’instant.</div>
-    </div>
+<div id="buttons"></div>
 
-    <div class="total" id="totals">
-      Total net : 0 kcal — 0 g prot
-    </div>
+<div class="list-box" id="selected"></div>
 
-    <textarea id="output" readonly onclick="this.select()"
-      placeholder="Texte prêt à coller dans ChatGPT…"></textarea>
+<div class="total" id="totals">Total net : 0 kcal — 0 g prot</div>
 
-    <button id="copyBtn" onclick="copyText()">📋 Copier pour ChatGPT</button>
+<textarea id="output" readonly></textarea>
+<button id="copyBtn" onclick="copyText()">📋 Copier pour ChatGPT</button>
 
-    <div class="note">
-      ℹ️ Le cardio (tapis, trajets) n’affiche pas de kcal ici. On fera les calculs dans la conversation.
-    </div>
-  </main>
+</main>
 
-  <!-- Popup grammes (poulet / salade / pâtes) -->
-  <div class="popup" id="gram-popup">
-    <div class="popup-box">
-      <div class="popup-title" id="gram-title">Quantité</div>
-      <div class="popup-sub">Choisis la quantité en grammes.</div>
-      <div class="popup-buttons" id="gram-buttons"></div>
-      <div class="popup-actions">
-        <button class="popup-link" onclick="closeGramPopup()">Annuler</button>
-      </div>
-    </div>
+<!-- POPUP GRAMMES -->
+<div class="popup" id="gram-popup">
+  <div class="popup-box">
+    <div id="gram-title"></div>
+    <div id="gram-buttons"></div>
+    <button onclick="closeGramPopup()">Annuler</button>
   </div>
+</div>
 
-  <!-- Popup cardio custom -->
-  <div class="popup" id="cardio-popup">
-    <div class="popup-box">
-      <div class="popup-title">Cardio marche inclinée</div>
-      <div class="popup-sub">Renseigne les paramètres principaux.</div>
+<script>
+const ITEMS = {
+  whey1:{label:"🥛 Whey 1 cup",k:110,p:20,u:"cup",q:1},
+  whey2:{label:"🥛 Whey 2 cups",k:110,p:20,u:"cup",q:2},
 
-      <div class="popup-input-group">
-        <label for="cardio-duration">Durée (minutes)</label>
-        <input id="cardio-duration" type="number" inputmode="decimal" placeholder="ex : 70">
-      </div>
-      <div class="popup-input-group">
-        <label for="cardio-slope">Pente (en degrés)</label>
-        <input id="cardio-slope" type="number" inputmode="decimal" placeholder="ex : 8">
-      </div>
-      <div class="popup-input-group">
-        <label for="cardio-speed">Vitesse (km/h)</label>
-        <input id="cardio-speed" type="number" inputmode="decimal" placeholder="ex : 6">
-      </div>
-      <div class="popup-input-group">
-        <label for="cardio-bpm">BPM moyen</label>
-        <input id="cardio-bpm" type="number" inputmode="decimal" placeholder="ex : 145">
-      </div>
+  spoon:{label:"🥛 Spoon Protéiné",k:115,p:25,u:"pot",q:1},
 
-      <div class="popup-actions">
-        <button class="popup-link danger" onclick="closeCardioPopup()">Annuler</button>
-        <button class="popup-link" onclick="confirmCardio()">Valider</button>
-      </div>
-    </div>
-  </div>
+  chicken:{label:"🍗 Poulet",k:1.65,p:0.31,u:"g",popup:[200,250,300,350,400]},
+  salad:{label:"🥗 Salade + légumes",k:0.15,p:0.01,u:"g",popup:[200,250,300,350,400]},
+  pasta:{label:"🍝 Pâtes cuites",k:1.5,p:0.035,u:"g",popup:[50,100,120,150,200]},
 
-  <script>
-    // ⚙️ Définition des items
-    // type = "food" (kcal/prot) ou "cardio" (0 kcal, 0 prot)
-    const ITEMS = {
-      whey1: {
-        buttonLabel: "🥛 Whey 1 cup",
-        name: "Whey",
-        type: "food",
-        unit: "cup",
-        defaultQty: 1,
-        kcalPerUnit: 110,
-        protPerUnit: 20
-      },
-      whey2: {
-        buttonLabel: "🥛 Whey 2 cups",
-        name: "Whey",
-        type: "food",
-        unit: "cup",
-        defaultQty: 2,
-        kcalPerUnit: 110,
-        protPerUnit: 20
-      },
-      chicken: {
-        buttonLabel: "🍗 Poulet",
-        name: "Poulet",
-        type: "food",
-        unit: "g",
-        defaultQty: 200,
-        kcalPerUnit: 1.65,
-        protPerUnit: 0.31
-      },
-      salad: {
-        buttonLabel: "🥗 Salade",
-        name: "Salade + légumes",
-        type: "food",
-        unit: "g",
-        defaultQty: 200,
-        kcalPerUnit: 0.15,
-        protPerUnit: 0.01
-      },
-      pasta: {
-        buttonLabel: "🍝 Pâtes",
-        name: "Pâtes cuites",
-        type: "food",
-        unit: "g",
-        defaultQty: 100,
-        kcalPerUnit: 1.5,   // 150 kcal / 100 g cuits
-        protPerUnit: 0.035  // 3.5 g prot / 100 g cuits
-      },
-      psyllium: {
-        buttonLabel: "🧂 Psyllium",
-        name: "Psyllium",
-        type: "food",
-        unit: "dose",
-        defaultQty: 1,
-        kcalPerUnit: 0,
-        protPerUnit: 0
-      },
-      oil: {
-        buttonLabel: "🫒 Huile d’olive",
-        name: "Huile d’olive",
-        type: "food",
-        unit: "g",
-        defaultQty: 10,
-        kcalPerUnit: 9,
-        protPerUnit: 0
-      },
-      walkGo: {
-        buttonLabel: "🚶 Aller salle",
-        name: "Trajet Salle (Aller)",
-        type: "cardio",
-        unit: "trajet",
-        defaultQty: 1,
-        kcalPerUnit: 0,
-        protPerUnit: 0
-      },
-      walkBack: {
-        buttonLabel: "🚶 Retour salle",
-        name: "Trajet Salle (Retour)",
-        type: "cardio",
-        unit: "trajet",
-        defaultQty: 1,
-        kcalPerUnit: 0,
-        protPerUnit: 0
-      },
-      cardio: {
-        buttonLabel: "🔥 Cardio",
-        name: "Cardio marche inclinée",
-        type: "cardio",
-        unit: "séance",
-        defaultQty: 1,
-        kcalPerUnit: 0,
-        protPerUnit: 0
-      }
-    };
+  psyllium:{label:"🧂 Psyllium",k:0,p:0,u:"dose",q:1},
+  oil:{label:"🫒 Huile d’olive",k:9,p:0,u:"g",q:10},
+};
 
-    // Liste des éléments sélectionnés
-    // { key, name, unit, qty, kcal, prot, duration?, slope?, speed?, bpm? }
-    let selected = [];
+let selected=[]; let gramKey=null;
 
-    // pour popup grammes
-    let gramPopupKey = null;
+function buildButtons() {
+  let html="";
+  for (const k in ITEMS) {
+    html+=`<button class="btn" onclick="addItem('${k}')">${ITEMS[k].label}</button>`;
+  }
+  document.getElementById("buttons").innerHTML=html;
+}
 
-    // 🔘 Construire les boutons
-    function buildButtons() {
-      let html = "";
-      for (const key in ITEMS) {
-        const it = ITEMS[key];
-        let sub = "";
-        if (it.type === "food") {
-          const defK = Math.round(it.kcalPerUnit * it.defaultQty);
-          const defP = Math.round(it.protPerUnit * it.defaultQty);
-          sub = `${it.defaultQty} ${it.unit}` +
-            (defK ? ` ≈ ${defK} kcal` : "") +
-            (defP ? ` · ${defP} g prot` : "");
-        } else {
-          sub = "Cardio / marche – kcal à calculer ici";
-        }
-        html += `
-          <button class="btn" onclick="addItem('${key}')">
-            ${it.buttonLabel}
-            <span class="small">${sub}</span>
-          </button>
-        `;
-      }
-      document.getElementById("buttons").innerHTML = html;
-    }
+function addItem(key) {
+  const it=ITEMS[key];
+  if (it.popup) return openGramPopup(key);
+  const qty=it.q;
+  selected.push({key,qty,kcal:it.k*qty,prot:it.p*qty});
+  render();
+}
 
-    // ➕ Ajout d’un item
-    function addItem(key) {
-      const def = ITEMS[key];
-      if (!def) return;
+function openGramPopup(key) {
+  gramKey=key;
+  const it=ITEMS[key];
+  document.getElementById("gram-title").textContent=it.label;
+  const box=document.getElementById("gram-buttons"); box.innerHTML="";
+  it.popup.forEach(v=>{
+    const b=document.createElement("button");
+    b.className="popup-btn"; b.textContent=v+" g";
+    b.onclick=()=>selectGram(v); box.appendChild(b);
+  });
+  document.getElementById("gram-popup").classList.add("active");
+}
 
-      // Cas poulet / salade / pâtes → popup grammes
-      if (key === "chicken" || key === "salad" || key === "pasta") {
-        openGramPopup(key);
-        return;
-      }
+function closeGramPopup(){ document.getElementById("gram-popup").classList.remove("active"); }
 
-      // Cas cardio → popup cardio custom
-      if (key === "cardio") {
-        openCardioPopup();
-        return;
-      }
+function selectGram(v){
+  const it=ITEMS[gramKey];
+  selected.push({key:gramKey,qty:v,kcal:it.k*v,prot:it.p*v});
+  closeGramPopup(); render();
+}
 
-      // Cas standard : whey, psyllium, huile, trajets
-      let qty = def.defaultQty;
+function render(){
+  let html="",totK=0,totP=0,copy=[];
+  selected.forEach((it,i)=>{
+    const def=ITEMS[it.key];
+    html+=`<div class="row"><div>${def.label} ${it.qty}${def.u} (${Math.round(it.kcal)} kcal, ${Math.round(it.prot)} g prot)</div>
+    <div class="row-actions"><span class="link" onclick="removeItem(${i})">Suppr</span></div></div>`;
+    totK+=it.kcal; totP+=it.prot;
+    copy.push(`${def.label} ${it.qty}${def.u} (${Math.round(it.kcal)} kcal, ${Math.round(it.prot)} g prot)`);
+  });
+  document.getElementById("selected").innerHTML=html;
+  document.getElementById("totals").textContent=
+    `Total net : ${Math.round(totK)} kcal — ${Math.round(totP)} g prot`;
+  document.getElementById("output").value = copy.join("\n");
+}
 
-      // Pas de question pour whey1/whey2/psyllium/huile/cardio/trajects
-      if (def.type === "food" && !["whey1","whey2","psyllium","oil"].includes(key)) {
-        const ans = prompt(
-          `Quantité pour ${def.name} en ${def.unit} (défaut : ${def.defaultQty})`,
-          String(def.defaultQty)
-        );
-        if (ans !== null && ans.trim() !== "") {
-          const q = parseFloat(ans.replace(",", "."));
-          if (!isNaN(q) && q > 0) qty = q;
-        }
-      }
+function removeItem(i){ selected.splice(i,1); render(); }
 
-      const kcal = def.kcalPerUnit * qty;
-      const prot = def.protPerUnit * qty;
+function copyText(){
+  const t=document.getElementById("output");
+  t.select(); document.execCommand("copy");
+  alert("Copié !");
+}
 
-      selected.push({
-        key,
-        name: def.name,
-        unit: def.unit,
-        qty,
-        kcal,
-        prot
-      });
-      render();
-    }
-
-    // 🧮 Popup grammes pour poulet / salade / pâtes
-    function openGramPopup(key) {
-      gramPopupKey = key;
-      const def = ITEMS[key];
-      const title = document.getElementById("gram-title");
-
-      if (key === "chicken") {
-        title.textContent = "Quantité de poulet (g)";
-      } else if (key === "salad") {
-        title.textContent = "Quantité de salade (g)";
-      } else {
-        title.textContent = "Quantité de pâtes (g)";
-      }
-
-      const btns = document.getElementById("gram-buttons");
-      btns.innerHTML = "";
-
-      // Options par défaut : poulet/salade
-      let options = [200, 250, 300, 350, 400];
-      // Pour pâtes : 50, 100, 120, 150, 200
-      if (key === "pasta") {
-        options = [50, 100, 120, 150, 200];
-      }
-
-      options.forEach(val => {
-        const b = document.createElement("button");
-        b.className = "popup-btn";
-        b.textContent = val + " g";
-        b.onclick = () => selectGram(val);
-        btns.appendChild(b);
-      });
-
-      document.getElementById("gram-popup").classList.add("active");
-    }
-
-    function closeGramPopup() {
-      document.getElementById("gram-popup").classList.remove("active");
-      gramPopupKey = null;
-    }
-
-    function selectGram(grams) {
-      if (!gramPopupKey) return;
-      const def = ITEMS[gramPopupKey];
-      const qty = grams;
-      const kcal = def.kcalPerUnit * qty;
-      const prot = def.protPerUnit * qty;
-
-      selected.push({
-        key: gramPopupKey,
-        name: def.name,
-        unit: def.unit,
-        qty,
-        kcal,
-        prot
-      });
-
-      gramPopupKey = null;
-      document.getElementById("gram-popup").classList.remove("active");
-      render();
-    }
-
-    // 🏃 Popup cardio custom
-    function openCardioPopup() {
-      document.getElementById("cardio-duration").value = "";
-      document.getElementById("cardio-slope").value = "";
-      document.getElementById("cardio-speed").value = "";
-      document.getElementById("cardio-bpm").value = "";
-      document.getElementById("cardio-popup").classList.add("active");
-    }
-
-    function closeCardioPopup() {
-      document.getElementById("cardio-popup").classList.remove("active");
-    }
-
-    function confirmCardio() {
-      const duration = (document.getElementById("cardio-duration").value || "").trim();
-      const slope    = (document.getElementById("cardio-slope").value || "").trim();
-      const speed    = (document.getElementById("cardio-speed").value || "").trim();
-      const bpm      = (document.getElementById("cardio-bpm").value || "").trim();
-
-      const def = ITEMS["cardio"];
-      selected.push({
-        key: "cardio",
-        name: def.name,
-        unit: "",
-        qty: 1,
-        kcal: 0,
-        prot: 0,
-        duration,
-        slope,
-        speed,
-        bpm
-      });
-
-      closeCardioPopup();
-      render();
-    }
-
-    // ✏️ Modifier quantité après coup (nourriture + trajets)
-    function editItem(index) {
-      const item = selected[index];
-      if (!item) return;
-
-      // Cardio custom : pas de modification (on supprime et on recrée)
-      if (item.key === "cardio") {
-        alert("Pour modifier le cardio, supprime et recrée avec le bouton 🔥 Cardio.");
-        return;
-      }
-
-      const def = ITEMS[item.key];
-      const msg =
-        `Nouvelle quantité pour ${item.name} en ${item.unit} (actuel : ${item.qty})`;
-      const answer = prompt(msg, String(item.qty));
-      if (answer === null || answer.trim() === "") return;
-      const q = parseFloat(answer.replace(",", "."));
-      if (!isNaN(q) && q > 0) {
-        item.qty = q;
-        item.kcal = def.kcalPerUnit * q;
-        item.prot = def.protPerUnit * q;
-        render();
-      }
-    }
-
-    // ❌ Suppression
-    function removeItem(index) {
-      selected.splice(index, 1);
-      render();
-    }
-
-    // 🔄 Render list + total + texte
-    function render() {
-      const box = document.getElementById("selected");
-      box.innerHTML = "";
-
-      if (selected.length === 0) {
-        box.innerHTML = '<div style="font-size:12px;color:#777;">Aucun élément pour l’instant.</div>';
-        document.getElementById("totals").textContent =
-          "Total net : 0 kcal — 0 g prot";
-        document.getElementById("output").value = "";
-        return;
-      }
-
-      let totalK = 0;
-      let totalP = 0;
-      let lines = [];
-
-      selected.forEach((it, i) => {
-        const def = ITEMS[it.key];
-        const row = document.createElement("div");
-        row.className = "row";
-
-        const main = document.createElement("div");
-        main.className = "row-main";
-
-        if (def && def.type === "cardio") {
-          if (it.key === "cardio") {
-            let details = [];
-            if (it.duration) details.push(`${it.duration} min`);
-            if (it.slope)    details.push(`${it.slope}°`);
-            if (it.speed)    details.push(`${it.speed} km/h`);
-            if (it.bpm)      details.push(`${it.bpm} bpm`);
-            main.innerHTML =
-              `<strong>Cardio marche inclinée</strong>` +
-              (details.length ? details.join(" · ") : "");
-            lines.push(
-              `Cardio marche inclinée : ${details.join(", ")} (kcal à calculer)`
-            );
-          } else {
-            // trajets à pied
-            main.innerHTML =
-              `<strong>${it.name}</strong>` +
-              `${it.qty} ${it.unit}`;
-            lines.push(`${it.name} ${it.qty} ${it.unit} (cardio, kcal à calculer)`);
-          }
-        } else {
-          // Nourriture
-          main.innerHTML =
-            `<strong>${it.name}</strong>` +
-            `${it.qty} ${it.unit} – ${Math.round(it.kcal)} kcal, ${Math.round(it.prot)} g prot`;
-          totalK += it.kcal;
-          totalP += it.prot;
-          lines.push(
-            `${it.name} ${it.qty} ${it.unit} (${Math.round(it.kcal)} kcal, ${Math.round(it.prot)} g prot)`
-          );
-        }
-
-        const actions = document.createElement("div");
-        actions.className = "row-actions";
-        const edit = document.createElement("span");
-        edit.className = "link";
-        edit.textContent = "Modifier";
-        edit.onclick = () => editItem(i);
-        const del = document.createElement("span");
-        del.className = "link danger";
-        del.textContent = "Suppr";
-        del.onclick = () => removeItem(i);
-        actions.appendChild(edit);
-        actions.appendChild(del);
-
-        row.appendChild(main);
-        row.appendChild(actions);
-        box.appendChild(row);
-      });
-
-      const totText =
-        `Total net : ${Math.round(totalK)} kcal — ${Math.round(totalP)} g prot`;
-      document.getElementById("totals").textContent = totText;
-
-      const out =
-        `Entrées du jour :\n` +
-        lines.join("\n") +
-        `\n\n🔥 Total net (hors cardio) = ${Math.round(totalK)} kcal\n` +
-        `💪 Protéines ≈ ${Math.round(totalP)} g`;
-      document.getElementById("output").value = out;
-    }
-
-    // 📋 Copie
-    function copyText() {
-      const ta = document.getElementById("output");
-      ta.select();
-      ta.setSelectionRange(0, 99999);
-      try {
-        document.execCommand("copy");
-        alert("Texte copié. Tu peux le coller dans ChatGPT.");
-      } catch (e) {
-        alert("Sélection faite. Si iOS bloque, copie manuellement.");
-      }
-    }
-
-    // init
-    buildButtons();
-    render();
-  </script>
+buildButtons(); render();
+</script>
 </body>
 </html>
